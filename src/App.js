@@ -1,26 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Admin, Resource } from 'react-admin';
+import drfProvider from "./dataProvider";
+import { StudentList } from './students';  // {}括起来表示export时不是default
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const dataProvider = drfProvider('http://localhost:8000')
+const App = () => (
+  <Admin dataProvider={dataProvider}>
+      <Resource name="students" list={StudentList} />
+  </Admin>
+);
 
 export default App;
